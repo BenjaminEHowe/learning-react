@@ -1,3 +1,11 @@
+# Don't commit package-lock.json - it's ugly
+package-lock.json
+
+# Don't commit dist directories
+dist/
+
+### BEGIN GITHUB NODE .gitignore
+
 # Logs
 logs
 *.log
