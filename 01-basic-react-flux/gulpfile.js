@@ -7,19 +7,20 @@ const browserify = require("browserify"); // bundles javascript
 const reactify = require("reactify"); // transforms react JSX to JS
 const source = require("vinyl-source-stream"); // use conventional text streams with gulp
 const concat = require("gulp-concat"); // concatenates files
+const lint = require("gulp-eslint"); // lint javascript files, including JSX
 
 const config = {
     "devBaseUrl": "http://127.0.0.1",
     "paths": {
         "css": [
-            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+            "node_modules/bootstrap/dist/css/bootstrap.min.css"
         ],
         "dist": "./dist",
         "html": "./src/*.html",
         "js": "./src/**/*.js",
         "mainJs": "./src/main.js",
     },
-    "port": 9005,
+    "port": 9005
 }
 
 // start a local development server
@@ -28,7 +29,7 @@ gulp.task("connect", (done) => {
         "base": config.devBaseUrl,
         "livereload": true,
         "port": config.port,
-        "root": ["dist"],
+        "root": ["dist"]
     });
     done();
 });
@@ -64,10 +65,17 @@ gulp.task("js", (done) => {
     done();
 });
 
+gulp.task("lint", () => {
+    return gulp.src(config.paths.js)
+        .pipe(lint({ "configFile": "eslint.config.json" }))
+        .pipe(lint.format())
+        .pipe(lint.failAfterError());
+})
+
 gulp.task("watch", (done) => {
     gulp.watch(config.paths.html, gulp.series("html"));
-    gulp.watch(config.paths.js, gulp.series("js"));
+    gulp.watch(config.paths.js, gulp.series("js", "lint"));
     done();
 });
 
-gulp.task("default", gulp.series("html", "css", "js", "open", "watch"));
+gulp.task("default", gulp.series("html", "css", "js", "lint", "open", "watch"));
