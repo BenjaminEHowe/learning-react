@@ -6,10 +6,14 @@ const open = require("gulp-open"); // opens a url in a web browser
 const browserify = require("browserify"); // bundles javascript
 const reactify = require("reactify"); // transforms react JSX to JS
 const source = require("vinyl-source-stream"); // use conventional text streams with gulp
+const concat = require("gulp-concat"); // concatenates files
 
 const config = {
     "devBaseUrl": "http://127.0.0.1",
     "paths": {
+        "css": [
+            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+        ],
         "dist": "./dist",
         "html": "./src/*.html",
         "js": "./src/**/*.js",
@@ -42,6 +46,13 @@ gulp.task("html", (done) => {
     done();
 });
 
+gulp.task("css", (done) => {
+    gulp.src(config.paths.css)
+        .pipe(concat("bundle.css"))
+        .pipe(gulp.dest(`${config.paths.dist}/css`));
+    done();
+});
+
 gulp.task("js", (done) => {
     browserify(config.paths.mainJs)
         .transform(reactify)
@@ -59,4 +70,4 @@ gulp.task("watch", (done) => {
     done();
 });
 
-gulp.task("default", gulp.series("html", "js", "open", "watch"));
+gulp.task("default", gulp.series("html", "css", "js", "open", "watch"));
