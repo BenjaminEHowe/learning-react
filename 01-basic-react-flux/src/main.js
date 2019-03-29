@@ -1,7 +1,10 @@
 "use strict";
 
-$ = jQuery = require("jquery");
+const $ = require("jquery"); // eslint-disable-line
+const jQuery = require("jquery"); // eslint-disable-line
+const React = require("react");
+const ReactDOM = require("react-dom");
 
-var App = console.log("Hello world from Browserify");
+const Home = require("./components/homePage");
 
-module.exports = App;
+ReactDOM.render(<Home />, document.getElementById("app"));
