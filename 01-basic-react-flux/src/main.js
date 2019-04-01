@@ -7,6 +7,8 @@ jQuery = require("jquery"); // eslint-disable-line
     const ReactDOM = require("react-dom");
     const PropTypes = require("prop-types");
 
+    const Header = require("./components/common/header");
+
     const Home = require("./components/homePage");
     const About = require("./components/about/aboutPage");
 
@@ -21,6 +23,7 @@ jQuery = require("jquery"); // eslint-disable-line
 
             return (
                 <div>
+                    <Header/>
                     <Child/>
                 </div>
             );
