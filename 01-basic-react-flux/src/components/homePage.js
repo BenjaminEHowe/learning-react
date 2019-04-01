@@ -1,10 +1,9 @@
 "use strict";
 
 const React = require("react");
-const createReactClass = require("create-react-class");
 
-var Home = createReactClass({
-    "render": () => {
+class Home extends React.Component {
+    render() {
         return (
             <div className="jumbotron">
                 <h1>Pluralsight Administration</h1>
@@ -12,6 +11,6 @@ var Home = createReactClass({
             </div>
         );
     }
-});
+}
 
 module.exports = Home;
