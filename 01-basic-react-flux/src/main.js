@@ -11,6 +11,7 @@ jQuery = require("jquery"); // eslint-disable-line
 
     const Home = require("./components/homePage");
     const About = require("./components/about/aboutPage");
+    const Authors = require("./components/authors/authorsPage");
 
     class App extends React.Component {
         render() {
@@ -18,6 +19,7 @@ jQuery = require("jquery"); // eslint-disable-line
 
             switch(this.props.route) {
                 case "about": Child = About; break;
+                case "authors": Child = Authors; break;
                 default: Child = Home;
             }
 
