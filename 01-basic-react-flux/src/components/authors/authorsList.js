@@ -3,7 +3,7 @@
 const React = require("react");
 const PropTypes = require("prop-types");
 
-class AuthorsList extends React.Component {
+class AuthorsList extends React.Component { 
     render() {
         let createAuthorRow = (author) => {
             return (
@@ -32,7 +32,7 @@ class AuthorsList extends React.Component {
     }
 }
 AuthorsList.propTypes = {
-    authors: PropTypes.array
+    authors: PropTypes.array.isRequired
 };
 
 module.exports = AuthorsList;

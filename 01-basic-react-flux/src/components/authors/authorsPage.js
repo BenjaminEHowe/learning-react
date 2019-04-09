@@ -5,7 +5,7 @@ const React = require("react");
 const AuthorApi = require("../../api/authorApi");
 const AuthorList = require("./authorsList");
 
-class Authors extends React.Component {
+class AuthorsPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = { authors: [] };
@@ -25,4 +25,4 @@ class Authors extends React.Component {
     }
 }
 
-module.exports = Authors;
+module.exports = AuthorsPage;
