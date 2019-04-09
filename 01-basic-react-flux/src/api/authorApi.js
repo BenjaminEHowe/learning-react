@@ -1,19 +1,19 @@
 "use strict";
 
-//This file is mocking a web API by hitting hard coded data.
-var authors = require('./authorData').authors;
-var _ = require('lodash');
+// this file is mocking a web API by hitting hard coded data.
+const authors = require('./authorData').authors;
+const _ = require('lodash');
 
-//This would be performed on the server in a real app. Just stubbing in.
-var _generateId = function(author) {
+// this would be performed on the server in a real app. Just stubbing in.
+function _generateId(author) {
 	return author.firstName.toLowerCase() + '-' + author.lastName.toLowerCase();
-};
+}
 
-var _clone = function(item) {
+function _clone(item) {
 	return JSON.parse(JSON.stringify(item)); //return cloned copy so that the item is passed by value instead of by reference
-};
+}
 
-var AuthorApi = {
+const AuthorApi = {
 	getAllAuthors: function() {
 		return _clone(authors); 
 	},

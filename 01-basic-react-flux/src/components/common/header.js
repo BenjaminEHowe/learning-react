@@ -1,6 +1,6 @@
 "use strict";
 
-var React = require('react');
+const React = require('react');
 
 class Header extends React.Component {
     render() {
