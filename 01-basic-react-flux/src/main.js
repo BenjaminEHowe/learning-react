@@ -2,7 +2,8 @@
 
 const React = require("react");
 const ReactDOM = require("react-dom");
-const Router = require("react-router");
-const routes = require("./routes");
+const { BrowserRouter } = require("react-router-dom");
 
-ReactDOM.render((<Router>{routes}</Router>), document.getElementById("app"));
+const App = require("./components/app");
+
+ReactDOM.render((<BrowserRouter><App /></BrowserRouter>), document.getElementById("app"));

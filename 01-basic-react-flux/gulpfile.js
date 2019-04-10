@@ -31,7 +31,8 @@ gulp.task("connect", (done) => {
         base: config.devBaseUrl,
         livereload: true,
         port: config.port,
-        root: ["dist"]
+        root: ["dist"],
+        fallback: "dist/index.html"
     });
     done();
 });
