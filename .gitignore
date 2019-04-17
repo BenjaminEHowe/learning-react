@@ -4,6 +4,9 @@ package-lock.json
 # Don't commit dist directories
 dist/
 
+# Don't commit db.json from json-server
+02-basic-react-redux/tools/db.json
+
 ### BEGIN GITHUB NODE .gitignore
 
 # Logs
