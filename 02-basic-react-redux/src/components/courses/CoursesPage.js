@@ -17,7 +17,7 @@ class CoursesPage extends React.Component {
       });
     }
 
-    if (courses.length === 0) {
+    if (authors.length === 0) {
       actions.loadAuthors().catch(error => {
         alert("Loading authors failed" + error);
       });
