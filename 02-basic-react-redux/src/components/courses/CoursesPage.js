@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 
 import CourseList from "./CourseList";
+import Spinner from "../common/Spinner";
 import * as authorActions from "../../redux/actions/authorActions";
 import * as courseActions from "../../redux/actions/courseActions";
 
@@ -35,7 +36,7 @@ class CoursesPage extends React.Component {
         >
           Add Course
         </button>
-        <CourseList courses={this.props.courses} />
+        {this.props.loading ? <Spinner /> : <CourseList courses={this.props.courses} />}
       </>
     );
   }
@@ -45,7 +46,8 @@ CoursesPage.propTypes = {
   actions: PropTypes.object.isRequired,
   authors: PropTypes.array.isRequired,
   courses: PropTypes.array.isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
@@ -59,7 +61,8 @@ function mapStateToProps(state) {
               ...course,
               authorName: state.authors.find(author => author.id == course.authorId).name
             };
-          })
+          }),
+    loading: state.apiCallsInProgress > 0
   };
 }
 
