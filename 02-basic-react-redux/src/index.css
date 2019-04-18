@@ -6,3 +6,8 @@
 nav {
   padding: 20px 0;
 }
+
+.table tr,
+.table td {
+  vertical-align: middle;
+}
