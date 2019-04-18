@@ -3,22 +3,32 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PropTypes from "prop-types";
 
+import CourseList from "./CourseList";
+import * as authorActions from "../../redux/actions/authorActions";
 import * as courseActions from "../../redux/actions/courseActions";
 
 class CoursesPage extends React.Component {
   componentDidMount() {
-    this.props.actions.loadCourses().catch(error => {
-      alert("Loading courses failed" + error);
-    });
+    const { courses, authors, actions } = this.props;
+
+    if (courses.length === 0) {
+      actions.loadCourses().catch(error => {
+        alert("Loading courses failed" + error);
+      });
+    }
+
+    if (courses.length === 0) {
+      actions.loadAuthors().catch(error => {
+        alert("Loading authors failed" + error);
+      });
+    }
   }
 
   render() {
     return (
       <>
         <h2>Courses</h2>
-        {this.props.courses.map(course => (
-          <div key={course.title}>{course.title}</div>
-        ))}
+        <CourseList courses={this.props.courses} />
       </>
     );
   }
@@ -26,18 +36,31 @@ class CoursesPage extends React.Component {
 
 CoursesPage.propTypes = {
   actions: PropTypes.object.isRequired,
+  authors: PropTypes.array.isRequired,
   courses: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
   return {
-    courses: state.courses
+    authors: state.authors,
+    courses:
+      state.authors.length === 0
+        ? []
+        : state.courses.map(course => {
+            return {
+              ...course,
+              authorName: state.authors.find(author => author.id == course.authorId).name
+            };
+          })
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(courseActions, dispatch)
+    actions: {
+      loadAuthors: bindActionCreators(authorActions.loadAuthors, dispatch),
+      loadCourses: bindActionCreators(courseActions.loadCourses, dispatch)
+    }
   };
 }
 
