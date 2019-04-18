@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 
 import CourseForm from "./CourseForm";
 import Spinner from "../common/Spinner";
@@ -50,6 +51,7 @@ function ManageCoursePage({
     event.preventDefault();
     setSaving(true);
     saveCourse(course).then(() => {
+      toast.success("Course saved.");
       history.push("/courses");
     });
   }

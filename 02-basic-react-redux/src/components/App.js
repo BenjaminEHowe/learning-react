@@ -1,5 +1,8 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Header from "./common/Header";
 import HomePage from "./home/HomePage";
 import CoursesPage from "./courses/CoursesPage";
@@ -19,6 +22,7 @@ function App() {
         <Route path="/course/:slug" component={ManageCoursePage} />
         <Route component={PageNotFound} />
       </Switch>
+      <ToastContainer autoClose={3000} />
     </div>
   );
 }
