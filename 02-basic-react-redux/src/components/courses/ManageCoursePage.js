@@ -122,4 +122,5 @@ const connectedStateAndProps = connect(
   mapStateToProps,
   mapDispatchToProps
 );
+export { ManageCoursePage as UnconnectedManageCoursePage };
 export default connectedStateAndProps(ManageCoursePage);
